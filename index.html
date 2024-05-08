@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
+
+    <style>
+        .pic-class {
+            display: flex;
+            justify-content: center;
+        }
+
+        .button-container {
+            display: flex;
+
+            justify-content: center;
+            /* Align items horizontally */
+        }
+
+        .button-success,
+        .button-error,
+        .button-warning,
+        .button-secondary {
+            color: white;
+            border-radius: 4px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+
+
+        }
+
+        .button-warning {
+            background: rgb(223, 117, 20);
+            margin: 10px 10px 10px 10px;
+            /* this is an orange */
+        }
+
+        .button-secondary {
+            background: rgb(66, 184, 221);
+            margin: 10px 10px 10px 10px;
+            /* this is a light blue */
+        }
+
+        #timer {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: rgb(66, 184, 221);
+            padding: 10px;
+            border: 1px solid #ffff;
+            border-radius: 5px;
+            color:#ffff;
+        }
+    </style>
+
+    <title>Project bird</title>
+
+</head>
+
+<body style="padding: 15px;">
+    <div class="pic-class">
+        <img src="https://cdn.download.ams.birds.cornell.edu/api/v1/asset/609313215/900">
+    </div>
+    <div id="timer"></div>
+    <div class="button-container">
+        <button class="button-secondary pure-button">Button 1</button>
+        <button class="button-secondary pure-button">Button 2</button>
+        <button class="button-secondary pure-button"> Button 3</button>
+
+    </div>
+
+</body>
+
+<script>
+    // Set the target date and time for the countdown
+    var targetDate = new Date('2024-05-10T00:00:00');
+
+    // Function to update the timer
+    function updateTimer() {
+        var currentDate = new Date();
+        var difference = targetDate - currentDate;
+
+        // Calculate time components
+        var days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        // Display the timer
+        document.getElementById('timer').innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+
+        // If the countdown is over, display a message
+        if (difference < 0) {
+            clearInterval(timerInterval);
+            document.getElementById('timer').innerHTML = "Countdown over!";
+        }
+    }
+
+    // Update the timer every second
+    var timerInterval = setInterval(updateTimer, 1000);
+</script>
+
+</html>
